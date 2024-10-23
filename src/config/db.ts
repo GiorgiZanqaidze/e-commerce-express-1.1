@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'; // Use named import for dotenv
 import { Sequelize } from 'sequelize';
-
+import 'colors';
 // Load environment variables from .env file
 dotenv.config();
 
@@ -14,7 +14,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log('Database connection has been established successfully.');
+    console.log('Database connection has been established successfully.'.bgYellow);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }

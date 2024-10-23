@@ -4,6 +4,7 @@ import customerRoutes from './routes/customerRoutes';
 import usersRoutes from './routes/userRoutes';
 import logger from './utils/logger';
 import { swaggerSpecs, swaggerUi } from './swagger/swagger';
+import sequelize from './config/db';
 import 'colors';
 
 dotenv.config();
@@ -14,6 +15,9 @@ app.use(express.json());
 
 // Swagger UI setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
+// Test the database connection before starting the server
+sequelize.authenticate()
 
 // Log incoming requests
 app.use((req: Request, res: Response, next) => {
