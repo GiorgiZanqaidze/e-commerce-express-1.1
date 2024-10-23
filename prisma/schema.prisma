@@ -1,0 +1,23 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // Change this to your actual database provider (e.g., mysql, postgresql)
+  url      = env("DATABASE_URL") // Ensure this is defined in your .env file
+}
+
+model Customers {
+  customer_id  Int     @id @default(autoincrement())
+  zip_code     String  @default("") @db.VarChar(20)
+  country      String  @default("") @db.VarChar(50)
+  first_name   String  @default("") @db.VarChar(50)
+  last_name    String  @default("") @db.VarChar(50)
+  email        String  @default("") @db.VarChar(100)
+  phone_number  String  @default("") @db.VarChar(20)
+  address      String  @default("") @db.VarChar(255)
+  city         String  @default("") @db.VarChar(50)
+  state        String  @default("") @db.VarChar(50)
+}
