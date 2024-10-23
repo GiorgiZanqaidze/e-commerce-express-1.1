@@ -21,3 +21,12 @@ model Customers {
   city         String  @default("") @db.VarChar(50)
   state        String  @default("") @db.VarChar(50)
 }
+
+model User {
+  id        Int      @id @default(autoincrement()) // Auto-incrementing primary key
+  username  String   @unique                      // Unique username for the user
+  email     String   @unique                      // Unique email for the user
+  password  String                                   // Hashed password
+  createdAt DateTime @default(now())               // Date of user creation
+  updatedAt DateTime @updatedAt                    // Date of last update
+}

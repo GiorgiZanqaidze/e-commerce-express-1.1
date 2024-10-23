@@ -28,6 +28,25 @@ async function main() {
   }
 
   console.log(customers);
+
+    // Delete existing users
+    await prisma.user.deleteMany();
+
+    // Create new users
+    const users: any = [];
+  
+    for (let i = 0; i < 10; i++) {
+      const user = await prisma.user.create({
+        data: {
+          username: faker.internet.userName(), // Generates a random username
+          email: faker.internet.email(),        // Generates a random email address
+          password: faker.internet.password(),   // Generates a random password
+        },
+      });
+      users.push(user);
+    }
+  
+    console.log(users);
 }
 
 main()
