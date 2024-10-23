@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      /* Basic Options */
+      "target": "ES2020",                           // Use modern ECMAScript target
+      "module": "CommonJS",                         // Use commonjs module system for Node.js
+      "lib": ["ES2020", "DOM"],                     // Include DOM library for type definitions
+      "strict": true,                               // Enable strict type-checking options
+      "esModuleInterop": true,                      // Enables ES module interop with CommonJS (important for Express)
+      "skipLibCheck": true,                         // Skips type checking of all declaration files (improves performance)
+      "forceConsistentCasingInFileNames": true,     // Ensures consistent file name casing
+      
+      /* Module Resolution Options */
+      "moduleResolution": "node",                   // TypeScript resolution strategy for node modules
+      "resolveJsonModule": true,                    // Allow import of .json files
+      "baseUrl": ".",                               // Base directory to resolve non-relative module names
+      
+      /* Output Options */
+      "outDir": "./dist",                           // Output directory for compiled files
+      "rootDir": "./src",                           // Specifies the root directory of input files
+      
+      /* Source Map */
+      "sourceMap": true,                            // Generates .map files for debugging purposes
+      
+      /* Experimental Options */
+      "experimentalDecorators": true,               // Enable experimental decorators
+      "emitDecoratorMetadata": true                 // Enables the emit of decorator metadata
+    },
+    "include": ["src"],                             // Specify project files to include
+    "exclude": ["node_modules"]                     // Exclude node_modules folder
+  }
+  
