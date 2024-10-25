@@ -40,6 +40,6 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 const HOST = process.env.HOST || 'localhost';
 
 app.listen(PORT, HOST, () => {
-  console.log(`Server is running on http://${HOST}:${PORT}`.blue);
+  console.log(`Server is running on http://${HOST}:${PORT}/api`.blue);
   console.log(`Swagger UI is available at http://localhost:${PORT}/api-docs`.green);
 });

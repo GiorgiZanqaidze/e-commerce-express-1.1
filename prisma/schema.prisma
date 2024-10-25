@@ -16,7 +16,7 @@ model Customers {
   first_name   String  @default("") @db.VarChar(50)
   last_name    String  @default("") @db.VarChar(50)
   email        String  @default("") @db.VarChar(100)
-  phone_number  String  @default("") @db.VarChar(20)
+  phone_number  String  @default("") @db.VarChar(30)
   address      String  @default("") @db.VarChar(255)
   city         String  @default("") @db.VarChar(50)
   state        String  @default("") @db.VarChar(50)
