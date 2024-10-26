@@ -1,31 +1,33 @@
-// src/controllers/userController.ts
-
+import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export const createUser = async (req: Request, res: Response): Promise<Response> => {
-    const { username, email, password } = req.body;
-  
-    try {
-      const user = await prisma.user.create({
-        data: {
-          username,
-          email,
-          password, // Ensure to hash this before storing
-        },
-      });
-      return res.status(201).json(user);
-    } catch (error) {
-      // Type assertion to handle the error properly
-      if (error instanceof Error) {
-        return res.status(400).json({ error: 'User creation failed: ' + error.message });
-      }
-      // Handle unexpected errors
-      return res.status(500).json({ error: 'An unexpected error occurred.' });
+  const { username, email, password } = req.body;
+
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds of 10 is standard
+
+    // Create the user with the hashed password
+    const user = await prisma.user.create({
+      data: {
+        username,
+        email,
+        password: hashedPassword, // Store the hashed password
+      },
+    });
+
+    return res.status(201).json(user);
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(400).json({ error: 'User creation failed: ' + error.message });
     }
-  };
+    return res.status(500).json({ error: 'An unexpected error occurred.' });
+  }
+};
 
 export const getAllUsers = async (req: Request, res: Response): Promise<Response> => {
   try {
