@@ -2,3 +2,6 @@
 node_modules/
 dist/
 # .env
+
+# DB migrations
+src/prisma/migrations
