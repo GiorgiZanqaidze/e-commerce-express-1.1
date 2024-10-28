@@ -108,13 +108,3 @@ project-root
 ├── .env                    # Environment variables
 └── package.json            # Dependencies and scripts
 ```
-
-## 🔗 API Endpoints
-
-Sample endpoints to get you started:
-
-- **GET** `/api/users` – Fetch all users
-- **POST** `/api/users` – Create a new user
-- **GET** `/api/users/:id` – Fetch user by ID
-- **PUT** `/api/users/:id` – Update user by ID
-- **DELETE** `/api/users/:id` – Delete user by ID
