@@ -10,6 +10,9 @@
     "generate": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
