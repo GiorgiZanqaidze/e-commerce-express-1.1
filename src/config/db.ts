@@ -7,14 +7,14 @@ dotenv.config();
 // Create a new instance of Sequelize for the SQL Server database
 const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
   dialect: 'mssql', // Change this according to your database (e.g., 'mysql', 'postgres')
-  logging: false,    // Disable logging; default: console.log
+  logging: true,    // Disable logging; default: console.log
 });
 
 // Test the database connection
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log('Database connection has been established successfully.'.bgGray);
+    console.log('Database connection has been established successfully.'.yellow);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }

@@ -17,13 +17,6 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 sequelize.authenticate()
-  .then(() => {
-    console.log('Database connected successfully.'.green);
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-    process.exit(1); // Exit the application if the database connection fails
-  });
 
 // Log incoming requests
 app.use((req: Request, res: Response, next) => {
