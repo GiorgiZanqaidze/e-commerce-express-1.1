@@ -5,10 +5,131 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser,
+  registerUser
 } from '../controllers/userController';
 
 const router = Router();
+
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management operations
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           example: johndoe
+ *         email:
+ *           type: string
+ *           example: johndoe@example.com
+ *         password:
+ *           type: string
+ *           example: secretPassword123
+ *     UserResponse:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           example: 1
+ *         username:
+ *           type: string
+ *           example: johndoe
+ *         email:
+ *           type: string
+ *           example: johndoe@example.com
+ */
+
+// Register a new user
+/**
+ * @swagger
+ * /users/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserResponse'
+ *       400:
+ *         description: Bad request, validation failed
+ */
+router.post('/register', async (req: Request, res: Response) => {
+  try {
+    const result = await registerUser(req);
+    return res.status(201).json(result); // Send the response here
+  } catch (error: any) { // Use any type for error
+    console.error(error.message); // Log the original error message
+    return res.status(500).json({ message: error.message || 'Failed to register user.' }); // Send a response with the original error message
+  }
+});
+
+// Login a user
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *     summary: Login a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: johndoe@example.com
+ *               password:
+ *                 type: string
+ *                 example: secretPassword123
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Login successful
+ *                 token:
+ *                   type: string
+ *                   example: your_jwt_token
+ *       401:
+ *         description: Invalid credentials
+ *       404:
+ *         description: User not found
+ */
+router.post('/login', async (req: Request, res: Response) => {
+  try {
+    const response = await loginUser(req);
+    return res.status(200).json(response);
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message || 'Failed to register user.' });
+  }
+});
+
 
 /**
  * @swagger
