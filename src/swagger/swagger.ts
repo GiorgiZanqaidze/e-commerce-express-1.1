@@ -15,6 +15,20 @@ const options = {
         url: `http://${process.env.HOST}:${process.env.PORT}/api`, // URL of your API
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [], // Apply the bearer authentication globally
+      },
+    ],
   },
   apis: ['./src/routes/*.ts'], // Path to the API docs
 };
