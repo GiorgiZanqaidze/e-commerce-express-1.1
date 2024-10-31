@@ -15,10 +15,10 @@ async function main() {
       data: {
         zip_code: faker.location.zipCode(), // Generates a random zip code
         country: faker.location.country(),    // Generates a random country name
-        first_name: faker.name.firstName(),  // Generates a random first name
-        last_name: faker.name.lastName(),    // Generates a random last name
+        first_name: faker.person.firstName(),  // Generates a random first name
+        last_name: faker.person.lastName(),    // Generates a random last name
         email: faker.internet.email(),       // Generates a random email address
-        phone_number: faker.phone.number(),  // Generates a random phone number
+        phone_number: faker.phone.number({ style: 'national' }),  // Generates a random phone number
         address: faker.location.streetAddress(), // Generates a random street address
         city: faker.location.city(),          // Generates a random city name
         state: faker.location.state(),        // Generates a random state name
